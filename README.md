@@ -1,4 +1,4 @@
-# Book Search Engine Starter Code
+# Book Search Engine
   [![project-languages-used](https://img.shields.io/github/languages/count/katiechurchwell/book-search?color=important)](https://github.com/katiechurchwell/book-search)
   [![project-top-language](https://img.shields.io/github/languages/top/katiechurchwell/book-search?color=blueviolet)](https://github.com/katiechurchwell/book-search)
 
