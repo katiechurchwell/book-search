@@ -88,12 +88,12 @@ console.log(userData)
       </Jumbotron>
       <Container>
         <h2>
-          {/* {userData.savedBooks.length
+          {userData.savedBooks.length
             ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
-            : 'You have no saved books!'} */}
+            : 'You have no saved books!'}
         </h2>
         <CardColumns>
-          {/* {userData.savedBooks.map((book) => {
+          {userData.savedBooks.map((book) => {
             return (
               <Card key={book.bookId} border='dark'>
                 {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
@@ -107,7 +107,7 @@ console.log(userData)
                 </Card.Body>
               </Card>
             );
-          })} */}
+          })}
         </CardColumns>
       </Container>
     </>

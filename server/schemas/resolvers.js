@@ -32,12 +32,13 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        saveBook: async (parent, args, context) => {
+        saveBook: async (parent, {bookDetails}, context) => {
             if (context.user) {
-                console.log(args);
+                console.log({bookDetails});
+
                 const user = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $push: { savedBooks: { ...args } } },
+                    { $push: { savedBooks: {bookDetails} } },
                     { new: true, runValidators: true }
                 )
                 return user;

@@ -57,34 +57,12 @@ const SearchBooks = () => {
     }
   };
 
-  // const [saveBook] = useMutation(SAVE_BOOK, {
-  //   update(cache, { data: { saveBook } }) {
-  //     try {
-  //       const { savedBooks } = cache.readQuery({ query: GET_ME });
-  //       cache.writeQuery({
-  //         query: GET_ME,
-  //         data: { savedBooks: [saveBook, ...savedBooks] }
-  //       });
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-
-  //     const { me } = cache.readQuery({ query: GET_ME });
-  //     cache.writeQuery({
-  //       query: GET_ME,
-  //       data: { me: { ...me, savedBooks: [...me.savedBooks, saveBook] } }
-  //     })
-  //   }
-  // });
-
-  // create function to handle saving a book to our database
-  
   const [saveBook] = useMutation(SAVE_BOOK);
-  
+
   const handleSaveBook = async (bookId) => {
     // find the book in `searchedBooks` state by the matching id
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
-    
+
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -94,9 +72,9 @@ const SearchBooks = () => {
 
     try {
       await saveBook({
-        variables: { bookId: bookId }
+        variables: { bookToSave, token}
       });
-
+      console.log("made it this far!")
       // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
