@@ -1,3 +1,7 @@
+## Front-End:
+
+## Backend: DONE
+--
 ## NOT LOGGED IN VIEW
 WHEN I am not logged in and enter a search term in the input field and click the submit button
 THEN I am presented with several search results, each featuring a book’s title, author, description, image, and a link to that book on the Google Books site
