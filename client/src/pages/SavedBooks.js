@@ -15,35 +15,8 @@ const SavedBooks = () => {
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
 
-  const { data, loading } = useQuery(GET_ME); //OK
+  const { UserData, loading } = useQuery(GET_ME); //OK
   const [removeBook] = useMutation(REMOVE_BOOK); //OK
-
-  useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-        if (!token) {
-          return false;
-        }
-
-        // switching over to graphql, is this syntax ok?
-        const response = await data()
-
-        if (!response.ok) {
-          throw new Error('something went wrong!');
-        }
-
-        const user = await response.json();
-        setUserData(user);
-        console.log(response.json)
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    getUserData();
-  }, [userDataLength]);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
@@ -58,7 +31,7 @@ const SavedBooks = () => {
       const response = await removeBook({
         variables: { bookId, token }
       });
-      
+
       if (!response.ok) {
         throw new Error('something went wrong!');
       }
@@ -77,7 +50,7 @@ const SavedBooks = () => {
     return <h2>LOADING...</h2>;
   }
 
-console.log(userData)
+  console.log(userData)
 
   return (
     <>
