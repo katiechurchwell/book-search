@@ -31,7 +31,6 @@ export const SAVE_BOOK = gql`
             _id
             username
             savedBooks {
-                _id
                 authors
                 bookId
                 title

@@ -70,9 +70,11 @@ const SearchBooks = () => {
       return false;
     }
 
+console.log(bookToSave)
+
     try {
       await saveBook({
-        variables: { bookToSave, token}
+        variables: { bookData: bookToSave }
       });
       
       console.log("made it this far!")
