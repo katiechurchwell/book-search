@@ -1,4 +1,4 @@
-# Book Search Engine
+# Book Search Engine :books:
   [![project-languages-used](https://img.shields.io/github/languages/count/katiechurchwell/book-search?color=important)](https://github.com/katiechurchwell/book-search)
   [![project-top-language](https://img.shields.io/github/languages/top/katiechurchwell/book-search?color=blueviolet)](https://github.com/katiechurchwell/book-search)
 
