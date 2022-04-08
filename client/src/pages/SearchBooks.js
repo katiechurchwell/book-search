@@ -76,8 +76,6 @@ console.log(bookToSave)
       await saveBook({
         variables: { bookData: bookToSave }
       });
-      
-      console.log("made it this far!")
 
       // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);

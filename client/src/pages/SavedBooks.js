@@ -17,7 +17,7 @@ const SavedBooks = () => {
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
-    console.log("bookId", bookId)
+    console.log(bookId)
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -26,20 +26,17 @@ const SavedBooks = () => {
 
     //run removeBook mutation
     try {
-      const response = await removeBook({
+      await removeBook({
         variables: { bookId: bookId }
       });
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+      // const updatedUser = await response.json();
+      
+      // setUserData(updatedUser);
 
-      const updatedUser = await response.json();
-      console.log("updateUser", updatedUser)
-      console.log("response", response)
-      setUserData(updatedUser);
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
+
     } catch (err) {
       console.error(err);
     }
@@ -58,11 +55,11 @@ const SavedBooks = () => {
         </Container>
       </Jumbotron>
       <Container>
-        {/* <h2>
-          {userData.savedBooks.length
+        <h2>
+          {data.me.savedBooks.length
             ? `Viewing ${data.me.savedBooks.length} saved ${data.me.savedBooks.length === 1 ? 'book' : 'books'}:`
             : 'You have no saved books!'}
-        </h2> */}
+        </h2>
         <CardColumns>
           {data.me.savedBooks.map((book) => {
             return (
