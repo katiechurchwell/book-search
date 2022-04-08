@@ -11,15 +11,13 @@ import Auth from '../utils/auth';
 
 const SavedBooks = () => {
   const [userData, setUserData] = useState({});
-
-  // use this to determine if `useEffect()` hook needs to run again
-  const userDataLength = Object.keys(userData).length;
-
-  const { UserData, loading } = useQuery(GET_ME); //OK
+  const { loading, error, data } = useQuery(GET_ME); //OK
   const [removeBook] = useMutation(REMOVE_BOOK); //OK
+  const token = Auth.loggedIn() ? Auth.getToken() : null;
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = async (bookId) => {
+    console.log("bookId", bookId)
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -29,7 +27,7 @@ const SavedBooks = () => {
     //run removeBook mutation
     try {
       const response = await removeBook({
-        variables: { bookId, token }
+        variables: { bookId: bookId }
       });
 
       if (!response.ok) {
@@ -37,6 +35,8 @@ const SavedBooks = () => {
       }
 
       const updatedUser = await response.json();
+      console.log("updateUser", updatedUser)
+      console.log("response", response)
       setUserData(updatedUser);
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
@@ -50,8 +50,6 @@ const SavedBooks = () => {
     return <h2>LOADING...</h2>;
   }
 
-  console.log(userData)
-
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
@@ -60,13 +58,13 @@ const SavedBooks = () => {
         </Container>
       </Jumbotron>
       <Container>
-        <h2>
+        {/* <h2>
           {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
+            ? `Viewing ${data.me.savedBooks.length} saved ${data.me.savedBooks.length === 1 ? 'book' : 'books'}:`
             : 'You have no saved books!'}
-        </h2>
+        </h2> */}
         <CardColumns>
-          {userData.savedBooks.map((book) => {
+          {data.me.savedBooks.map((book) => {
             return (
               <Card key={book.bookId} border='dark'>
                 {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
