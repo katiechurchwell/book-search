@@ -13,7 +13,7 @@
 Google Books API search engine built with a RESTful API, refactored to be a GraphQL API built with Apollo Server. The app was built using the MERN stack, with a React front end, MongoDB database, and Node.js/Express.js server and API.
 
 ## Deployment
-
+https://safe-earth-60472.herokuapp.com/
 
 ## Demo/Screenshot
 ![Demo of Book Search Enginer](./demo.gif)
